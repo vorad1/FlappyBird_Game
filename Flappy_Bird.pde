@@ -1,8 +1,9 @@
 PImage bg;
 int bgx,bgy;
+
 void setup(){
   size(960,544);
-  bg = loadImage("bg.png");
+  bg = loadImage("resources/bg.png");
 }
 void draw(){
  setBg(); 
