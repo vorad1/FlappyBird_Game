@@ -1,3 +1,5 @@
+//Dev Viren Vora
+//Francisco Salazar Andrade
 PImage bg;
 int bgx,bgy;
 void setup(){
