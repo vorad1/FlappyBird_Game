@@ -5,7 +5,7 @@ int bgx,bgy;
 
 void setup(){
   size(960,544);
-  bg = loadImage("resources/bg.png");
+  bg = loadImage("data/bg.png");
 }
 void draw(){
  setBg(); 
