@@ -8,7 +8,7 @@ void setup(){
   size(960,544);
   bg = loadImage("data/bg.png");
   
-  bird = new Bird(1,1,0,0);
+  bird = new Bird(50,200,1.5,100,100);
 }
 void draw(){
  setBg(); 
