@@ -2,13 +2,17 @@
 //Francisco Salazar Andrade
 PImage bg;
 int bgx,bgy;
+Bird bird;
 
 void setup(){
   size(960,544);
   bg = loadImage("data/bg.png");
+  
+  bird = new Bird(1,1,0,0);
 }
 void draw(){
  setBg(); 
+ bird.activate();
 }
 
 // This is to set the animated background
