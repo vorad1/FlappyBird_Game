@@ -3,21 +3,28 @@
 class Pipes {
   int[] pipeX;
   int[] pipeY;
+  PImage topPipe, bottomPipe;
   
-  void initialisePipes() {
+  public Pipes(){   
+  topPipe = loadImage("data/topPipe.png"); 
+  bottomPipe = loadImage("data/bottomPipe.png");
     pipeX = new int[8];
     pipeY = new int[pipeX.length];
+  }
+  
+  void initialisePipes() {   
     for (int i =0; i<pipeX.length; i++) {
       //To start the pipes off the screen
       pipeX[i] = width + 150 * i;
       //casting value from float to integer
-      pipeY[i] = (int)random(-200, 200);
+      pipeY[i] = (int)random(-50, 50);
     }
   }
+  
   void drawPipes() {
     for (int i =0; i<pipeX.length; i++) {
       image(topPipe, pipeX[i], pipeY[i]);
-      image(bottomPipe, pipeX[i], pipeY[i]+350);
+      image(bottomPipe, pipeX[i], pipeY[i]+400);
       //Moves the pipes along the X axis
       pipeX[i]-= 1;
     }

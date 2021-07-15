@@ -12,26 +12,23 @@ Bird bird;
 PImage bg,topPipe, bottomPipe;
 int bgx, bgy;
 
-Pipes pipes = new Pipes();
+Pipes pipes;
 
 void setup() {
   size(960, 544);
   //Loading the images 
   bg = loadImage("data/bg.png");
   
+  //Loading the constructor inside setup
+  pipes = new Pipes();
+  
   bird = new Bird(50,200,1.5,100,100);
   pipes.initialisePipes();
 }
 void draw(){
  setBg(); 
- bird.activate();
-
-  topPipe = loadImage("data/topPipe.png"); 
-  bottomPipe = loadImage("data/bottomPipe.png");
-
-  
-  
-  pipes.drawPipes();
+ bird.activate(); 
+ pipes.drawPipes();
 }
 
 
