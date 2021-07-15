@@ -1,7 +1,7 @@
 class StartScreen{
  
   void setStartScreen(){
-    image(bg, bgx, bgy);
+    //image(bg, bgx, bgy);
     fill(0);
     text("Flappy Bird",width/2-60,height/2-60);
     
