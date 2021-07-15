@@ -1,7 +1,6 @@
 //Dev Viren Vora
 //Francisco Salazar Andrade
-PImage bg;
-int bgx,bgy;
+
 Bird bird;
 
 
@@ -19,25 +18,22 @@ void setup() {
   size(960, 544);
   //Loading the images 
   bg = loadImage("data/bg.png");
-<<<<<<< Updated upstream
   
   bird = new Bird(50,200,1.5,100,100);
+  pipes.initialisePipes();
 }
 void draw(){
  setBg(); 
  bird.activate();
-=======
+
   topPipe = loadImage("data/topPipe.png"); 
   bottomPipe = loadImage("data/bottomPipe.png");
 
-  pipes.initialisePipes();
-}
-
-void draw() {
-  setBg();  
-
+  
+  
   pipes.drawPipes();
 }
+
 
 // This is to set the animated background
 void setBg() {
