@@ -15,7 +15,7 @@ class Pipes {
   void initialisePipes() {   
     for (int i =0; i<pipeX.length; i++) {
       //To start the pipes off the screen
-      pipeX[i] = width + 150 * i;
+      pipeX[i] = width + 200 * i;
       //casting value from float to integer
       pipeY[i] = (int)random(-50, 50);
     }
