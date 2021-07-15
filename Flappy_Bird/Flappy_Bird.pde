@@ -1,11 +1,9 @@
 //Dev Viren Vora
 //Francisco Salazar Andrade
-<<<<<<< Updated upstream
 PImage bg;
 int bgx,bgy;
 Bird bird;
-=======
->>>>>>> Stashed changes
+
 
 //******************* Flappy Bird**********************//
 
@@ -39,7 +37,6 @@ void draw() {
   setBg();  
 
   pipes.drawPipes();
->>>>>>> Stashed changes
 }
 
 // This is to set the animated background
