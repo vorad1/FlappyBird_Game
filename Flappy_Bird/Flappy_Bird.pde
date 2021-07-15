@@ -3,7 +3,7 @@
 //******************* Flappy Bird**********************//
 
 //******************* Bugs Present*********************//
-
+Bird is behind the pipes - it needs to be in front of the pipes, to be able to successfully detect collision
 
 int bgx, bgy;
 
