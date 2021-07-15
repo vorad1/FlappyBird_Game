@@ -16,12 +16,12 @@ void setup() {
   //Loading the constructor inside setup
   pipes = new Pipes();
   bg = new Background();
-  bird = new Bird(50,200,1.5,100,100);
-  
+  bird = new Bird(50, 200, 1.5, 100, 100);
+
   pipes.initialisePipes();
 }
 
-void draw(){
+void draw() {
   clear();
   bg.setBg(); 
   bird.activate(); 
