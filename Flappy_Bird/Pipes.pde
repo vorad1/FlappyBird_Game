@@ -25,8 +25,9 @@ class Pipes {
     for (int i =0; i<pipeX.length; i++) {
       image(topPipe, pipeX[i], pipeY[i]);
       image(bottomPipe, pipeX[i], pipeY[i]+400);
+      
       //Moves the pipes along the X axis
-      pipeX[i]-= 1;
+      pipeX[i]-= 3;
     }
   }
 };

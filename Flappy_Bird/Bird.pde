@@ -35,6 +35,7 @@ public class Bird
     spawn();
     move();
   }
+  
     //sprite
   public void sprite()
   {
@@ -44,7 +45,6 @@ public class Bird
       images[i].resize(int(size.x),int(size.y));
     }
   }
-  
     //spawn
   public void spawn()
   {
