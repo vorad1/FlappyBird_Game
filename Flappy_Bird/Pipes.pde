@@ -8,7 +8,7 @@ class Pipes {
   public Pipes() {   
     topPipe = loadImage("data/topPipe.png"); 
     bottomPipe = loadImage("data/bottomPipe.png");
-    pipeX = new int[8];
+    pipeX = new int[6];
     pipeY = new int[pipeX.length];
   }
 
@@ -28,6 +28,9 @@ class Pipes {
 
       //Moves the pipes along the X axis
       pipeX[i]-= 3;
+      if (pipeX[i] < -200){
+       pipeX[i] = width;
+      }
     }
   }
 };
