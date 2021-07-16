@@ -1,13 +1,36 @@
 class StartScreen {
 
-  void setStartScreen() {
-    //image(bg, bgx, bgy);
-    fill(0);
-    text("Flappy Bird", width/2-60, height/2-60);
-
-    fill(150);
-    rect(width/2-50, height/2-20, 40, 100);
-    fill(0);
-    text("Play", width/2-50, height/2+20);
+  PVector posName, posPlay;
+  PImage bg, name, startGameButton;
+  int n = 0;
+  
+  public StartScreen(){
+    posName = new PVector((width/3+100), 200);
+    posPlay = new PVector((width/3+120), 300);
+    bg = loadImage("data/bg.png");
+    name = loadImage("data/name.png");
+    startGameButton = loadImage("data/startgamebutton.png");
   }
+  
+void setStartScreen() {
+  image(bg, 0, 0);
+  image(name, posName.x,posName.y);
+  image(startGameButton, posPlay.x, posPlay.y);
+}
+
+void startGame() {
+  if (key == CODED) {
+    if (keyPressed) {
+      if (keyCode == SHIFT) {
+        if ((width/3+120) + startGameButton.width >= mouseX &&
+          mouseX >= (width/3+120) && 
+          300 + startGameButton.height >= mouseY &&
+          mouseY >= 300) {
+          println("Click Me" + n);
+          n++;
+        }
+      }
+    }
+  }
+}
 }
