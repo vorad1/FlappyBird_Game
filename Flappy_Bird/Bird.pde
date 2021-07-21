@@ -14,6 +14,7 @@ public class Bird
   //size
   PVector size;
 
+  SetScene sc;
 
   //constructor
   public Bird(float x, float y, float gravity, int w, int h)
@@ -27,6 +28,9 @@ public class Bird
     jump =20;
   }
 
+  public Bird()
+  {
+  }
   //methods
   //activate
   public void activate()
@@ -74,8 +78,9 @@ public class Bird
     //edge collision
     if(location.y + size.y >= height ||
         location.y <= 0){
-      stop();
-    }
+          //set start to 2 and show end screen
+          start = 2;
+     }
   }
   //collect
   public void collect()

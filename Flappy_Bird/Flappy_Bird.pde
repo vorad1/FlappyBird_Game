@@ -9,24 +9,30 @@ int bgx, bgy;
 
 SetScene sc;
 //Pipes pipes;
-//Bird bird;
-boolean start;
+Bird bird;
+int start;
 
 void setup() {
   size(960, 544);
   //Loading the constructor inside setup
   sc = new SetScene();
   sc.setStartScreen();
-  start= false;
+  start= 0;
 }
 
 void draw() {
   clear();
-  if(!start) {
-    sc.setStartScreen();
-    sc.startGame(start);
-  } 
-  else{  
-    sc.setGameScene();
+  switch(start){
+    case 0:
+      sc.setStartScreen();
+      sc.startGame(start);
+      break;
+    case 1:
+      sc.setGameScene();
+      break;
+    case 2:
+      sc.setEndScreen();
+      break;
   }
+  
 }

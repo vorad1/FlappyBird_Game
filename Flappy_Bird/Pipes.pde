@@ -17,19 +17,21 @@ class Pipes {
       //To start the pipes off the screen
       pipeX[i] = width + 200 * i;
       //casting value from float to integer
-      pipeY[i] = (int)random(-50, 10);
+      pipeY[i] = (int)random(-200, 0);
     }
   }
 
   void drawPipes() {
     for (int i =0; i<pipeX.length; i++) {
       image(topPipe, pipeX[i], pipeY[i]);
-      image(bottomPipe, pipeX[i], pipeY[i]+400);
-
+      image(bottomPipe, pipeX[i], pipeY[i]+500);
+      topPipe.resize(50,300);
+      bottomPipe.resize(50,300);
       //Moves the pipes along the X axis
       pipeX[i]-= 3;
       if (pipeX[i] < -200){
        pipeX[i] = width;
+       pipeY[i] = (int)random(-200, 0);
       }
     }
   }

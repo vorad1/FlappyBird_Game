@@ -32,9 +32,9 @@ class SetScene {
     pipes = new Pipes();
   
 
-  bird = new Bird(50, 200, 1.5, 100, 100);
-
- pipes.initialisePipes();
+    bird = new Bird(50, 200, 1.5, 40, 40);
+  
+    pipes.initialisePipes();
   }
   
   
@@ -47,12 +47,12 @@ class SetScene {
     //message saying press any key to start
   }
 
-  void startGame(boolean start) {
+  void startGame(int start) {
     //once a key is input boolean is true and the game starts
     if (key == CODED) {
-      println("Start" + n);
+      //println("Start" + n);
       n++;
-      start = true;
+      start = 1;
       setGameScene();
       pipes.drawPipes();
       bird.activate(); 
