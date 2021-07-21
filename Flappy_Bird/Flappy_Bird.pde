@@ -17,7 +17,7 @@ void setup() {
   sc = new SetScene();
   pipes = new Pipes();
   sc.setStartScreen();
-  
+
   bird = new Bird(50, 200, 1.5, 100, 100);
 
   pipes.initialisePipes();

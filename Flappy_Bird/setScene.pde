@@ -27,6 +27,8 @@ class SetScene {
     bgMove = new PVector(1,0);
     posBg = new PVector(0,0);
   }
+  
+  
 
 //Start Screen
   void setStartScreen() {
