@@ -1,5 +1,7 @@
 class SetScene {
 
+  Pipes pipes;
+  Bird bird;
   PVector posName, posPlay, posNameEnd, posGameOver, posMenu, posExit,bgMove,posBg ;
   PImage bg, name, startGameButton, gameOver, menu, exit;
   int n = 0;
@@ -26,6 +28,13 @@ class SetScene {
     //Game Screen
     bgMove = new PVector(1,0);
     posBg = new PVector(0,0);
+    
+    pipes = new Pipes();
+  
+
+  bird = new Bird(50, 200, 1.5, 100, 100);
+
+ pipes.initialisePipes();
   }
   
   
@@ -35,22 +44,18 @@ class SetScene {
     image(bg, 0, 0);
     image(name, posName.x, posName.y);
     image(startGameButton, posPlay.x, posPlay.y);
+    //message saying press any key to start
   }
 
-  void startGame() {
+  void startGame(boolean start) {
+    //once a key is input boolean is true and the game starts
     if (key == CODED) {
-      if (keyPressed) {
-        if (keyCode == SHIFT) {
-          if (posPlay.x + startGameButton.width >= mouseX &&
-            mouseX >= posPlay.x && 
-            posPlay.y + startGameButton.height >= mouseY &&
-            mouseY >= posPlay.y) {
-            println("Start" + n);
-            n++;
-            setGameScene();
-          }
-        }
-      }
+      println("Start" + n);
+      n++;
+      start = true;
+      setGameScene();
+      pipes.drawPipes();
+      bird.activate(); 
     }
   }
   

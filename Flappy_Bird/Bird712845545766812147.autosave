@@ -1,0 +1,97 @@
+public class Bird
+{
+  //attributes
+  //image
+  PImage bird;
+  //image array for animation
+  PImage[] images = new PImage[3];
+  //location
+  PVector location;
+  //jump
+  float jump;
+  //gravity
+  float gravity;
+  //size
+  PVector size;
+  //pipe object
+  Pipes pipes;
+
+  //constructor
+  public Bird(float x, float y, float gravity, int w, int h)
+  {
+    bird = loadImage("data/flappy_bird.png");
+
+    location = new PVector(x, y);
+    size = new PVector(w, h);
+
+    this.gravity = gravity;
+    jump =20;
+    
+    pipes = new Pipes();
+  }
+
+  //methods
+  //activate method this just activates all the bird methods in the main class
+  public void activate()
+  {
+    sprite();
+    spawn();
+    move();
+    collide();
+  }
+
+  //sprite
+  public void sprite()
+  {
+    for (int i = 0; i < images.length; i++) {
+      images[i] = bird.get(i*(bird.width/images.length), 0, 
+        (bird.width/images.length), bird.height); 
+      images[i].resize(int(size.x), int(size.y));
+    }
+  }
+  //spawn
+  public void spawn()
+  {
+    image(images[0], location.x, location.y);
+  }
+  //jump and fall
+  public void move()
+  {
+    if (key == CODED) {
+      
+        if (keyCode == UP && keyPressed) {
+          jump=-10;
+          location.y+=jump;
+          image(images[1], location.x, location.y+10);
+        }
+      
+      else if (!keyPressed) {
+        jump=5;
+        location.y+=jump*gravity;
+        image(images[2], location.x, location.y-10);
+      }
+    }
+  }
+  //collide 
+  public void collide()
+  {
+    //edge collision
+    if(location.y + size.y >= height ||
+        location.y <= 0){
+      stop();
+    }
+    //pipe collision
+    //if(location.x + size.x >= pipes.location.x &&
+    //   pipes.location.x + pipes.size.x >= location.x &&
+    //   location.y + size.y >= rect2.location.y &&
+    //   rect2.location.y + rect2.size.x >= location.y) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+  }
+  //collect
+  public void collect()
+  {
+  }
+}
