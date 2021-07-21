@@ -34,6 +34,7 @@ public class Bird
     sprite();
     spawn();
     move();
+    collide();
   }
 
   //sprite
@@ -58,18 +59,23 @@ public class Bird
         if (keyCode == UP) {
           jump=-10;
           location.y+=jump;
-          image(images[1], location.x-1*10, location.y);
+          image(images[1], location.x, location.y+5);
         }
       } else if (!keyPressed) {
         jump=5;
         location.y+=jump*gravity;
-        image(images[2], location.x-2*10, location.y-5);
+        image(images[2], location.x, location.y-5);
       }
     }
   }
   //collide 
   public void collide()
   {
+    //edge collision
+    if(location.y + size.y >= height ||
+        location.y <= 0){
+      stop();
+    }
   }
   //collect
   public void collect()
