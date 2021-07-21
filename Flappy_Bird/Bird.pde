@@ -7,30 +7,26 @@ public class Bird
   PImage[] images = new PImage[3];
   //location
   PVector location;
-  //jump
-  float jump;
-  //gravity
-  float gravity;
+  //jump and fall speed;
+  float speed;
   //size
   PVector size;
+  //jump
+  boolean jumping;
 
-  SetScene sc;
+  Pipes pipes;
 
   //constructor
-  public Bird(float x, float y, float gravity, int w, int h)
+  public Bird(float x, float y, int w, int h)
   {
     bird = loadImage("data/flappy_bird.png");
-
     location = new PVector(x, y);
     size = new PVector(w, h);
-
-    this.gravity = gravity;
-    jump =20;
+    jumping = false;
+    
+    pipes = new Pipes();
   }
 
-  public Bird()
-  {
-  }
   //methods
   //activate
   public void activate()
@@ -38,7 +34,6 @@ public class Bird
     sprite();
     spawn();
     move();
-    collide();
   }
 
   //sprite
@@ -58,22 +53,32 @@ public class Bird
   //jump and fall
   public void move()
   {
+    //move the bird
+    location.y+=speed;
+    //make the bird jump
     if (key == CODED) {
-      if (keyPressed) {
-        if (keyCode == UP) {
-          jump=-10;
-          location.y+=jump;
-          image(images[1], location.x, location.y+5);
+        if (keyCode == UP && keyPressed) {
+          //can the bird jump
+          if (!jumping) {
+            //going up
+            speed = -15;
+            //animate
+            image(images[1], location.x, location.y);
+            //disallow jumping while already jumping
+            jumping = true;
+          }
         }
-      } else if (!keyPressed) {
-        jump=5;
-        location.y+=jump*gravity;
-        image(images[2], location.x, location.y-5);
+        //fall
+       else if (!keyPressed) {
+         speed = 5;
+         speed++;
+         image(images[2], location.x, location.y-7);
+         jumping = false;
       }
     }
   }
   //collide 
-  public void collide()
+  public void collide(Pipes pipes)
   {
     //edge collision
     if(location.y + size.y >= height ||
@@ -81,6 +86,24 @@ public class Bird
           //set start to 2 and show end screen
           start = 2;
      }
+     
+     //top pipe collision
+     for(int i = 0; i < pipes.pipeX.length; i++){
+       if(location.x + size.x >= pipes.pipeX[i] &&
+           pipes.pipeX[i] + 50 >= location.x &&
+           location.y + size.y >= pipes.pipeY[i] &&
+           pipes.pipeY[i] + 300 >= location.y + size.y){
+            start = 2;
+           }
+       //bottom pipe collision
+       if(location.x + size.x >= pipes.pipeX[i] &&
+           pipes.pipeX[i] + 50 >= location.x &&
+           location.y + size.y >= pipes.pipeY[i] + 500 &&
+           pipes.pipeY[i] + 800 >= location.y + size.y){
+            start = 2;
+           }
+     }
+     
   }
   //collect
   public void collect()
