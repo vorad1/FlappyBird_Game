@@ -17,7 +17,7 @@ class Pipes {
       //To start the pipes off the screen
       pipeX[i] = width + 200 * i;
       //casting value from float to integer
-      pipeY[i] = (int)random(-50, 50);
+      pipeY[i] = (int)random(-50, 10);
     }
   }
 

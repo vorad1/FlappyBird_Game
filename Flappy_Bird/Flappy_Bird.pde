@@ -7,23 +7,24 @@
 
 int bgx, bgy;
 
-Background bg;
+SetScene sc;
 Pipes pipes;
 Bird bird;
 
 void setup() {
   size(960, 544);
   //Loading the constructor inside setup
+  sc = new SetScene();
   pipes = new Pipes();
-  bg = new Background();
+  sc.setStartScreen();
+  
   bird = new Bird(50, 200, 1.5, 100, 100);
 
   pipes.initialisePipes();
 }
 
 void draw() {
-  clear();
-  bg.setBg(); 
-  bird.activate(); 
-  pipes.drawPipes();
+  //clear();
+  ////bird.activate(); 
+  //pipes.drawPipes();
 }
