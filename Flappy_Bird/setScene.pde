@@ -2,6 +2,7 @@ class SetScene {
 
   Pipes pipes;
   Bird bird;
+  Coin coin;
   PVector posName, posPlay, posNameEnd, posGameOver, posMenu, posExit, bgMove, posBg;
   PVector posText;
   PImage bg, name, startGameButton, gameOver, menu, exit;
@@ -33,7 +34,7 @@ class SetScene {
     posBg = new PVector(0, 0);
 
     pipes = new Pipes();
-
+    coin = new Coin();
 
     bird = new Bird(50, 200, 40, 40);
 
@@ -54,13 +55,14 @@ class SetScene {
   }
 
   void startGame(int start) {
-    //once a key is input boolean is true and the game starts
+    //once a key is input int to decide which screen is shown
     if (key == CODED) {
       start = 1;
       setGameScene();
       pipes.drawPipes();
       bird.activate(); 
       bird.collide(pipes);
+      coin.spawn(pipes,bird);
     }
   }
 

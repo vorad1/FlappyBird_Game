@@ -15,6 +15,7 @@ public class Bird
   boolean jumping;
 
   Pipes pipes;
+  Coin coin;
 
   //constructor
   public Bird(float x, float y, int w, int h)
@@ -27,6 +28,8 @@ public class Bird
     pipes = new Pipes();
   }
 
+  public Bird() {
+  }
   //methods
   //activate
   public void activate()
@@ -34,6 +37,7 @@ public class Bird
     sprite();
     spawn();
     move();
+    
   }
 
   //sprite
@@ -61,7 +65,7 @@ public class Bird
           //can the bird jump
           if (!jumping) {
             //going up
-            speed = -15;
+            speed = -10;
             //animate
             image(images[1], location.x, location.y);
             //disallow jumping while already jumping
@@ -105,8 +109,17 @@ public class Bird
      }
      
   }
-  //collect
-  public void collect()
+  //collect the coins
+  public void collect(PVector[] coin)//this parameter will be the location
   {
+    for(int i = 0; i < coin.length; i++) { 
+      if(location.x + size.x >= coin[i].x &&
+         coin[i].x + 50 >= location.x &&
+         location.y + size.y >= coin[i].y &&
+         coin[i].y + 50 >= location.y + size.y){
+           coin[i] = new PVector(200,200);
+           println("collect");           
+         }
+    }
   }
 }
