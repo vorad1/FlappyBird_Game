@@ -32,6 +32,12 @@ void draw() {
       break;
     case 2:
       sc.setEndScreen();
+      //sc.endGame(start);
+      //sc.menu(start);
+      sc.setEndGame(start);
+      break;
+      case 3:
+      exit();
       break;
   }
   

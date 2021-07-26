@@ -2,21 +2,24 @@ class SetScene {
 
   Pipes pipes;
   Bird bird;
-  PVector posName, posPlay, posNameEnd, posGameOver, posMenu, posExit,bgMove,posBg ;
+  PVector posName, posPlay, posNameEnd, posGameOver, posMenu, posExit, bgMove, posBg;
+  PVector posText;
   PImage bg, name, startGameButton, gameOver, menu, exit;
   int n = 0;
 
   public SetScene() {
+
     //Start Screen
     posName = new PVector((width/3+100), 200);
     posPlay = new PVector((width/3+120), 300);
-    
+    posText = new PVector((width/3-110), 380);
+
     //End Screen
     posNameEnd = new PVector((width/3+100), 100);
     posGameOver = new PVector((width/3+100), 170);
     posMenu = new PVector((width/3+100), 250);
     posExit = new PVector((width/3+150), 250);
-    
+
     //Loading the Images
     bg = loadImage("data/bg.png");
     name = loadImage("data/name.png");
@@ -24,26 +27,29 @@ class SetScene {
     gameOver = loadImage("data/gameover.png");
     menu = loadImage("data/menu.png");
     exit = loadImage("data/exit.png");
-    
+
     //Game Screen
-    bgMove = new PVector(1,0);
-    posBg = new PVector(0,0);
-    
+    bgMove = new PVector(1, 0);
+    posBg = new PVector(0, 0);
+
     pipes = new Pipes();
-  
+
 
     bird = new Bird(50, 200, 40, 40);
-  
+
     pipes.initialisePipes();
   }
-  
-  
 
-//Start Screen
+
+
+  //Start Screen
   void setStartScreen() {
     image(bg, 0, 0);
     image(name, posName.x, posName.y);
     image(startGameButton, posPlay.x, posPlay.y);
+    textSize(20);
+    fill(245, 245, 245, 150);
+    text("Tap the Up arrow to start the game and move the bird", posText.x, posText.y);
     //message saying press any key to start
   }
 
@@ -57,9 +63,9 @@ class SetScene {
       bird.collide(pipes);
     }
   }
-  
+
   //Game State
-    // This is to set the animated background
+  // This is to set the animated background
   void setGameScene() {
     background(0);
     image(bg, posBg.x, posBg.y);
@@ -67,7 +73,7 @@ class SetScene {
 
     // this is to move the the image by 1 unit to show the animation
     posBg.sub(bgMove);
-    
+
 
     //Resets the image, once the first image is done
     if (posBg.x < -bg.width) {
@@ -75,7 +81,7 @@ class SetScene {
     }
   }
 
-//End Screen
+  //End Screen
   void setEndScreen() {
     image(bg, 0, 0);
     image(name, posNameEnd.x, posNameEnd.y);
@@ -83,37 +89,74 @@ class SetScene {
     image(menu, posMenu.x, posMenu.y); 
     image(exit, posExit.x, posExit.y);
   }
-  
-  void endGame(){
-    if (key == CODED) {
-      if (keyPressed) {
-        if (keyCode == SHIFT) {
-          if (posExit.x + exit.width >= mouseX &&
-            mouseX >= posExit.x && 
-            posExit.y + exit.height >= mouseY &&
-            mouseY >= posExit.y) {
-            println("Exit" + n);
-            n++;
-          }
-        }
-      }
+
+  //void endGame(int start){
+  //  //if (key == CODED) {
+  //  //  //if (keyPressed) {
+  //    //  if (keyCode == SHIFT) {
+  //  //      if (posExit.x + exit.width >= mouseX &&
+  //  ////        mouseX >= posExit.x && 
+  //  ////        posExit.y + exit.height >= mouseY &&
+  //  ////        mouseY >= posExit.y) {
+  //  //        println("Exit" + n);
+  //  //        //n++;
+  //  //        exit();
+  //  //      }
+  //  //  //  }
+  //  //  //}
+  //  //}
+
+  //          mousePressed();
+
+
+
+  //}
+
+  //void mousePressed(){ 
+
+  //  if (posExit.x + exit.width >= mouseX &&
+  //          mouseX >= posExit.x && 
+  //          posExit.y + exit.height >= mouseY &&
+  //          mouseY >= posExit.y) {
+  //          println("Exit" + n);
+  //          //start = 3;
+  //          }
+
+  //}
+
+  //void menu(int start){
+  //    if (key == CODED) {
+  //  //  //if (keyPressed) {
+  //  //  //  if (keyCode == SHIFT) {
+  //  //      //if (posMenu.x + menu.width >= mouseX &&
+  //  //      //  mouseX >= posMenu.x && 
+  //  //      //  posMenu.y + menu.height >= mouseY &&
+  //  //      //  mouseY >= posMenu.y) {
+  //  //        //println("Menu" + n);
+  //  //        //n++;
+  //  //        start = 0;
+  //  //      }
+  //  //    //}
+  //  ////  }
+  //  ////}
+
+  //    fill(0);
+  //    start = 0;
+
+  //  }
+  //}
+
+  void setEndGame(int start) {
+    if (posMenu.x + menu.width >= mouseX &&
+      mouseX >= posMenu.x && 
+      posMenu.y + menu.height >= mouseY &&
+      mouseY >= posMenu.y) {
+      start = 0;
+    } else if (posExit.x + exit.width >= mouseX &&
+      mouseX >= posExit.x && 
+      posExit.y + exit.height >= mouseY &&
+      mouseY >= posExit.y) {
+      start = 3;
     }
   }
-  
-  void menu(){
-      if (key == CODED) {
-      if (keyPressed) {
-        if (keyCode == SHIFT) {
-          if (posMenu.x + menu.width >= mouseX &&
-            mouseX >= posMenu.x && 
-            posMenu.y + menu.height >= mouseY &&
-            mouseY >= posMenu.y) {
-            println("Menu" + n);
-            n++;
-          }
-        }
-      }
-    }
-  }
-  
 }
