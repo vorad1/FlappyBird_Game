@@ -31,17 +31,29 @@ public class Coin
     }
   }
   
-  public void spawn(Pipes pipes, Bird bird)
+  public void spawn(Pipes pipes)
   {
     //find locations of the pipe
     for(int i = 0; i < pipes.pipeX.length; i++) {
       //set equal to coin location
-      location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + 350);
+      location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(250,450));
       
     }
     //spawn and animate the coin at the different location
+    //bird.collect(location);
+    //animate();
+  }
+  
+  public void move(Bird bird,Pipes pipes)
+  {
     bird.collect(location);
     animate();
+    for(int i = 0; i < coins.length;i++) {
+      location[i].x -= 3;
+      if (location[i].x < -200){
+         location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(250,450));
+      }
+    }
   }
   
   public void animate()

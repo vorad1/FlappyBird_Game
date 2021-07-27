@@ -29,6 +29,7 @@ class Pipes {
       bottomPipe.resize(50,300);
       //Moves the pipes along the X axis
       pipeX[i]-= 3;
+      //reset the pipes
       if (pipeX[i] < -200){
        pipeX[i] = width;
        pipeY[i] = (int)random(-200, 0);
