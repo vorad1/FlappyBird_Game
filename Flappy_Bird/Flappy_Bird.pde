@@ -5,7 +5,12 @@
 //******************* Bugs Present*********************//
 //Bird is behind the pipes - it needs to be in front of the pipes, to be able to successfully detect collision
 
+import processing.sound.*;
+SoundFile flap, coinCollect, pipeCrash, screenCrash;
+
 int bgx, bgy;
+
+int score;
 
 SetScene sc;
 //Pipes pipes;
@@ -18,6 +23,11 @@ void setup() {
   sc = new SetScene();
   sc.setStartScreen();
   start= 0;
+  flap = new SoundFile(this, "data/sfx_wing.wav");
+  coinCollect = new SoundFile(this, "data/sfx_point.wav");
+  pipeCrash = new SoundFile(this, "data/sfx_hit.wav");
+  screenCrash = new SoundFile(this, "data/sfx_die.wav");
+  score = 0;
 }
 
 void draw() {

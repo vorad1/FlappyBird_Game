@@ -1,3 +1,5 @@
+
+
 public class Bird
 {
   //attributes
@@ -13,6 +15,7 @@ public class Bird
   PVector size;
   //jump
   boolean jumping;
+  
 
   Pipes pipes;
   Coin coin;
@@ -26,6 +29,8 @@ public class Bird
     jumping = false;
     
     pipes = new Pipes();
+    
+    
   }
 
   public Bird() {
@@ -69,6 +74,7 @@ public class Bird
             //animate
             image(images[1], location.x, location.y);
             //disallow jumping while already jumping
+            flap.play();
             jumping = true;
           }
         }
@@ -87,6 +93,7 @@ public class Bird
     //edge collision
     if(location.y + size.y >= height ||
         location.y <= 0){
+          screenCrash.play();
           //set start to 2 and show end screen
           start = 2;
      }
@@ -97,6 +104,7 @@ public class Bird
            pipes.pipeX[i] + 50 >= location.x &&
            location.y + size.y >= pipes.pipeY[i] &&
            pipes.pipeY[i] + 300 >= location.y + size.y){
+             pipeCrash.play();
             start = 2;
            }
        //bottom pipe collision
@@ -104,6 +112,7 @@ public class Bird
            pipes.pipeX[i] + 50 >= location.x &&
            location.y + size.y >= pipes.pipeY[i] + 500 &&
            pipes.pipeY[i] + 800 >= location.y + size.y){
+             pipeCrash.play();
             start = 2;
            }
      }
@@ -117,7 +126,9 @@ public class Bird
          coin[i].x + 50 >= location.x &&
          location.y + size.y >= coin[i].y &&
          coin[i].y + 50 >= location.y + size.y){
-           coin[i] = new PVector(200,200);
+           coinCollect.play();
+           coin[i].y = -200;
+           score++;
            println("collect");           
          }
     }

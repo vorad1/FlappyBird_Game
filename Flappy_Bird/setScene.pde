@@ -39,6 +39,7 @@ class SetScene {
     bird = new Bird(50, 200, 40, 40);
 
     pipes.initialisePipes();
+    coin.spawn(pipes);
   }
 
 
@@ -52,6 +53,9 @@ class SetScene {
     fill(245, 245, 245, 150);
     text("Tap the Up arrow to start the game and move the bird", posText.x, posText.y);
     //message saying press any key to start
+    textSize(24);
+    fill(255);
+    text("Score: "+score, 10,20);
   }
 
   void startGame(int start) {
@@ -62,7 +66,7 @@ class SetScene {
       pipes.drawPipes();
       bird.activate(); 
       bird.collide(pipes);
-      coin.spawn(pipes,bird);
+      coin.move(bird,pipes);
     }
   }
 
@@ -72,7 +76,7 @@ class SetScene {
     background(0);
     image(bg, posBg.x, posBg.y);
     image(bg, posBg.x+bg.width, posBg.y);
-
+    
     // this is to move the the image by 1 unit to show the animation
     posBg.sub(bgMove);
 
@@ -81,6 +85,9 @@ class SetScene {
     if (posBg.x < -bg.width) {
       posBg.x=0;
     }
+    textSize(24);
+    fill(255);
+    text("Score: "+score, 10,20);
   }
 
   //End Screen
@@ -90,6 +97,9 @@ class SetScene {
     image(gameOver, posGameOver.x, posGameOver.y);
     image(menu, posMenu.x, posMenu.y); 
     image(exit, posExit.x, posExit.y);
+    textSize(24);
+    fill(255);
+    text("Score: "+score, 10,20);
   }
 
   //void endGame(int start){
