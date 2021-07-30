@@ -36,7 +36,7 @@ public class Coin
     //find locations of the pipe
     for(int i = 0; i < pipes.pipeX.length; i++) {
       //set equal to coin location
-      location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(250,450));
+      location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(275,425));
       
     }
     //spawn and animate the coin at the different location
@@ -51,7 +51,7 @@ public class Coin
     for(int i = 0; i < coins.length;i++) {
       location[i].x -= 3;
       if (location[i].x < -200){
-         location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(250,450));
+         location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(275,425));
       }
     }
   }

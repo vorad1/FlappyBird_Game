@@ -2,69 +2,61 @@
 //Francisco Salazar Andrade
 //******************* Flappy Bird**********************//
 
-//******************* Bugs Present*********************//
 
-
+//for the sounds
 import processing.sound.*;
 SoundFile flap, coinCollect, pipeCrash, screenCrash;
 
-int bgx, bgy;
-
+//to keep score
 int score;
+//to keep track of which game screen to show
+int screen;
 
-
-//Pipes pipes;
-Bird bird;
-int start;
-
-startScreen ss;
-gameScreen gs;
-endScreen es;
+//different game screen object
+StartScreen ss;
+GameScreen gs;
+EndScreen es;
 
 void setup() {
+  //screen size decided for the game
   size(960, 544);
-  //Loading the constructor inside setup
-
-  ss = new startScreen();
-  gs = new gameScreen();
-  es = new endScreen();
   
-  //sc.setStartScreen();
-  //ss.setStartScreen();
-  start= 0;
+  //initialize objects
+  ss = new StartScreen();
+  gs = new GameScreen();
+  es = new EndScreen();
+  
+  //initialize global variables
+  screen= 0;
+  score = 0;
+  
+  //initialize sound
   flap = new SoundFile(this, "data/sfx_wing.wav");
   coinCollect = new SoundFile(this, "data/sfx_point.wav");
   pipeCrash = new SoundFile(this, "data/sfx_hit.wav");
   screenCrash = new SoundFile(this, "data/sfx_die.wav");
-  score = 0;
-  
-  
 }
 
 void draw() {
   clear();
-  switch(start){
+  //depending on the value of 'screen' something different will run
+  switch(screen){
     case 0:
-      ss.setStartScreen();
-      ss.startGame();
+      ss.activateStart();
       break;
     case 1:
-      gs.bgMove();
-      gs.drawObject();
+      gs.activateGame();
       break;
     case 2:
-    println(start);
       es.setEndScreen();
       break;
-    case 3:
+    default:
       exit();
       break;
   }
-  
 }
 
 public void mouseClicked()
 {
-  
-      es.setEndGame();
+  es.endChoice();
 }

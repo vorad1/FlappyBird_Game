@@ -21,6 +21,7 @@ class Pipes {
     }
   }
 
+  //draws and moves the pipes
   void drawPipes() {
     for (int i =0; i<pipeX.length; i++) {
       image(topPipe, pipeX[i], pipeY[i]);
@@ -36,4 +37,4 @@ class Pipes {
       }
     }
   }
-};
+}

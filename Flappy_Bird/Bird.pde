@@ -1,5 +1,3 @@
-
-
 public class Bird
 {
   //attributes
@@ -17,32 +15,38 @@ public class Bird
   boolean jumping;
   
 
+  //pipe and coin objects
   Pipes pipes;
   Coin coin;
 
   //constructor
   public Bird(float x, float y, int w, int h)
   {
+    //initialize bird attributes
     bird = loadImage("data/flappy_bird.png");
     location = new PVector(x, y);
     size = new PVector(w, h);
+    
+    //boolean to allow jumping
     jumping = false;
     
+    //initialize objects
     pipes = new Pipes();
-    
-    
+    coin = new Coin();
   }
 
-  public Bird() {
+  public Bird() 
+  {
   }
+  
   //methods
   //activate
-  public void activate()
+  public void activate(Pipes pipes)
   {
     sprite();
     spawn();
     move();
-    
+    collide(pipes);
   }
 
   //sprite
@@ -95,7 +99,7 @@ public class Bird
         location.y <= 0){
           screenCrash.play();
           //set start to 2 and show end screen
-          start = 2;
+          screen = 2;
      }
      
      //top pipe collision
@@ -105,7 +109,7 @@ public class Bird
            location.y + size.y >= pipes.pipeY[i] &&
            pipes.pipeY[i] + 300 >= location.y + size.y){
              pipeCrash.play();
-            start = 2;
+            screen = 2;
            }
        //bottom pipe collision
        if(location.x + size.x >= pipes.pipeX[i] &&
@@ -113,7 +117,7 @@ public class Bird
            location.y + size.y >= pipes.pipeY[i] + 500 &&
            pipes.pipeY[i] + 800 >= location.y + size.y){
              pipeCrash.play();
-            start = 2;
+            screen = 2;
            }
      }
      
@@ -121,11 +125,14 @@ public class Bird
   //collect the coins
   public void collect(PVector[] coin)//this parameter will be the location
   {
+    //for each coin
     for(int i = 0; i < coin.length; i++) { 
-      if(location.x + size.x >= coin[i].x &&
+      //is the location of the bird equal to the coins
+      if(location.x + size.x >= coin[i].x -3 &&
          coin[i].x + 50 >= location.x &&
          location.y + size.y >= coin[i].y &&
          coin[i].y + 50 >= location.y + size.y){
+           //
            coinCollect.play();
            coin[i].y = -200;
            score++;

@@ -1,9 +1,12 @@
-class startScreen{
+public class StartScreen
+{
+  //attributes
   PImage bg,name,startGameButton;
   PVector posName,posPlay,posText;
 
-  public startScreen(){
-  
+  //constructor
+  public StartScreen()
+  {
     //Start Screen
     posName = new PVector((width/3+100), 200);
     posPlay = new PVector((width/3+120), 300);
@@ -13,12 +16,19 @@ class startScreen{
     bg = loadImage("data/bg.png");
     name = loadImage("data/name.png");
     startGameButton = loadImage("data/startgamebutton.png");
-    
-    
+  }
+  
+  //methods
+  //start screen activate
+  public void activateStart()
+  {
+    setStartScreen();
+    startGame();
   }
   
   //Start Screen
-  void setStartScreen() {
+  public void setStartScreen() 
+  {
     image(bg, 0, 0);
     image(name, posName.x, posName.y);
     image(startGameButton, posPlay.x, posPlay.y);
@@ -26,15 +36,16 @@ class startScreen{
     fill(245, 245, 245, 150);
     text("Tap the Up arrow to start the game and move the bird", posText.x, posText.y);
     //message saying press any key to start
-    textSize(24);
-    fill(255);
-    text("Score: "+score, 10,20);
   }
 
-  void startGame() {
-    //once a key is input int to decide which screen is shown
+  //function to start the game
+  public void startGame() 
+  {
+    //once up key is input 'screen' changes to game screen value
     if (key == CODED) {
-      start = 1;
+      if (keyCode == UP && keyPressed) {
+        screen = 1;
+      }
     }
   }
 
