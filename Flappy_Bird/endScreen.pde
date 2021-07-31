@@ -10,7 +10,7 @@ public class EndScreen
     //End Screen
     posNameEnd = new PVector((width/3+100), 100);
     posGameOver = new PVector((width/3+100), 170);
-    posMenu = new PVector((width/3+100), 250);
+    posMenu = new PVector((width/3+60), 250);
     posExit = new PVector((width/3+150), 250);
     
     //Loading the Images
@@ -28,7 +28,9 @@ public class EndScreen
     image(name, posNameEnd.x, posNameEnd.y);
     image(gameOver, posGameOver.x, posGameOver.y);
     image(menu, posMenu.x, posMenu.y); 
+    menu.resize(80,40);
     image(exit, posExit.x, posExit.y);
+    exit.resize(80,40);
     textSize(24);
     fill(255);
     text("Score: "+score, 10,20);
