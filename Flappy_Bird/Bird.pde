@@ -35,6 +35,7 @@ public class Bird
     coin = new Coin();
   }
 
+  //method overload
   public Bird() 
   {
   }
@@ -109,16 +110,16 @@ public class Bird
            location.y + size.y >= pipes.pipeY[i] &&
            pipes.pipeY[i] + 300 >= location.y + size.y){
              pipeCrash.play();
-            screen = 2;
-           }
+             screen = 2;
+       }
        //bottom pipe collision
        if(location.x + size.x >= pipes.pipeX[i] &&
            pipes.pipeX[i] + 50 >= location.x &&
            location.y + size.y >= pipes.pipeY[i] + 500 &&
            pipes.pipeY[i] + 800 >= location.y + size.y){
              pipeCrash.play();
-            screen = 2;
-           }
+             screen = 2;
+       }
      }
      
   }
@@ -132,12 +133,10 @@ public class Bird
          coin[i].x + 50 >= location.x &&
          location.y + size.y >= coin[i].y &&
          coin[i].y + 50 >= location.y + size.y){
-           //
            coinCollect.play();
            coin[i].y = -200;
-           score++;
-           println("collect");           
-         }
+           score++;         
+      }
     }
   }
 }

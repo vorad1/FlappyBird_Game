@@ -1,7 +1,6 @@
 public class Coin
 {
-  Pipes pipes;
-  Bird bird;
+  
   //attributes
   PImage coin;
   PImage[] coins = new PImage[6];
@@ -9,8 +8,14 @@ public class Coin
   PVector size;
   int count;
   
+  //objects
+  Pipes pipes;
+  Bird bird;
+  
+  //constructor
   public Coin()
   {
+    
     coin = loadImage("data/coin.png");
     size = new PVector();
     count = 0;
@@ -20,8 +25,7 @@ public class Coin
   }
   
   //methods
- 
-  
+  //divide the image for animation
   public void sprite()
   {
     for (int i = 0; i < coins.length; i++) {
@@ -31,19 +35,17 @@ public class Coin
     }
   }
   
+  //spawn the coins in relation to the pipes
   public void spawn(Pipes pipes)
   {
     //find locations of the pipe
     for(int i = 0; i < pipes.pipeX.length; i++) {
       //set equal to coin location
-      location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(275,425));
-      
+      location[i] = new PVector(pipes.pipeX[i],pipes.pipeY[i] + (int)random(275,425)); 
     }
-    //spawn and animate the coin at the different location
-    //bird.collect(location);
-    //animate();
   }
   
+  //
   public void move(Bird bird,Pipes pipes)
   {
     bird.collect(location);
